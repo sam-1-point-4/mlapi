@@ -1,8 +1,15 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
 
+class NameRequest(BaseModel):
+    name: str
+
+@app.post("/hello")
+async def hello(data: NameRequest):
+    return {"message": f"Hello {data.name}"}
+
 @app.get("/hello")
-def hello():
-    return {"message": "Hello World"}
+async def hello_get(name: str = "World"):
+    return {"message": f"Hello {name}"}

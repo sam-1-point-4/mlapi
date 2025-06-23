@@ -9,3 +9,5 @@
 .cache
 .jupyter
 .git
+.pyc
+__pycache__
